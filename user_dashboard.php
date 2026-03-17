@@ -65,7 +65,7 @@ $result = mysqli_query($conn, $sql);
                     $duration = (strtotime($row['end_date']) - strtotime($row['start_date'])) / (60*60*24);
                 ?>
                     <tr>
-                        <td><?php echo $row['title']; ?></td>
+                        <td><?php echo $row['event_name']; ?></td>
                         <td><?php echo $row['program_type']; ?></td>
                         <td><?php echo $duration; ?> Days</td>
                         <td>
@@ -79,10 +79,10 @@ $result = mysqli_query($conn, $sql);
                             ?>
                         </td>
                         <td>
-                            <a href="uploads/<?php echo $row['file_path']; ?>" 
-                               target="_blank" class="btn btn-info btn-sm">
-                               View
-                            </a>
+                        <a href="uploads/<?php echo $row['file_name']; ?>" 
+                        target="_blank">
+                          View
+                       </a>
                         </td>
                     </tr>
                 <?php } ?>

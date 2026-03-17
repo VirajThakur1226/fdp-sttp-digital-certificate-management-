@@ -1,28 +1,24 @@
 <?php
 include("db.php");
 
-if(isset($_POST['register']))
-{
+if(isset($_POST['register'])){
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Simple validation
-    if($name != "" && $email != "" && $password != "")
-    {
-        $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
-        if(mysqli_query($conn, $sql))
-        {
-            echo "<script>alert('Registration Successful'); window.location='user_login.php';</script>";
-        }
-        else
-        {
-            echo "<script>alert('Error! Email may already exist');</script>";
-        }
-    }
-    else
-    {
+    if($name == "" || $email == "" || $password == ""){
         echo "<script>alert('All fields are required');</script>";
+    }
+    else{
+        $sql = "INSERT INTO users (name,email,password)
+                VALUES ('$name','$email','$password')";
+
+        if(mysqli_query($conn,$sql)){
+            echo "<script>alert('Registration Successful'); window.location='user_login.php';</script>";
+        }else{
+            echo "<script>alert('Error in registration');</script>";
+        }
     }
 }
 ?>
@@ -30,50 +26,87 @@ if(isset($_POST['register']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Registration</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>User Registration</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+}
+
+.container{
+    width:350px;
+    margin:100px auto;
+    background:white;
+    padding:25px;
+    border-radius:8px;
+    box-shadow:0px 0px 10px #ccc;
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#007bff;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+a{
+    text-decoration:none;
+    color:#007bff;
+}
+
+.footer{
+    text-align:center;
+    margin-top:10px;
+}
+
+</style>
+
 </head>
-<body class="bg-light">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card shadow">
-                <div class="card-header text-center bg-primary text-white">
-                    <h4>User Registration</h4>
-                </div>
-                <div class="card-body">
+<body>
 
-                    <form method="POST">
-                        <div class="mb-3">
-                            <label>Full Name</label>
-                            <input type="text" name="name" class="form-control" required>
-                        </div>
+<div class="container">
 
-                        <div class="mb-3">
-                            <label>Email</label>
-                            <input type="email" name="email" class="form-control" required>
-                        </div>
+<h2>User Registration</h2>
 
-                        <div class="mb-3">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control" required>
-                        </div>
+<form method="POST">
 
-                        <div class="d-grid">
-                            <button type="submit" name="register" class="btn btn-primary">
-                                Register
-                            </button>
-                        </div>
-                    </form>
+<label>Full Name</label>
+<input type="text" name="name">
 
-                </div>
-                <div class="card-footer text-center">
-                    Already have account? <a href="user_login.php">Login</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<label>Email</label>
+<input type="email" name="email">
+
+<label>Password</label>
+<input type="password" name="password">
+
+<button type="submit" name="register">Register</button>
+
+</form>
+
+<div class="footer">
+Already have account? <a href="user_login.php">Login</a>
+</div>
+
 </div>
 
 </body>

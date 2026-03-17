@@ -85,7 +85,7 @@
 
 .card h3 {
     margin-bottom: 10px;
-    color: #1f4db8;
+    color: #1047a5;
 }
 
 .card p {
@@ -148,7 +148,7 @@ footer {
 
 <!-- Footer -->
 <footer>
-    © 2026 FDP/STTP Certificate Management System | Developed by Your Name
+    © 2026 FDP/STTP Certificate Management System 
 </footer>
 
 </body>

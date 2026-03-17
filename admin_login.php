@@ -7,9 +7,8 @@ if(isset($_POST['login']))
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Example: single admin record in database
     $sql = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn,$sql);
 
     if(mysqli_num_rows($result) == 1)
     {
@@ -26,45 +25,84 @@ if(isset($_POST['login']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Admin Login</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+}
+
+.container{
+    width:350px;
+    margin:120px auto;
+    background:white;
+    padding:25px;
+    border-radius:8px;
+    box-shadow:0 0 10px #ccc;
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#dc3545;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#b02a37;
+}
+
+.footer{
+    text-align:center;
+    margin-top:10px;
+}
+
+a{
+    text-decoration:none;
+    color:#007bff;
+}
+
+</style>
+
 </head>
-<body class="bg-light">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card shadow">
-                <div class="card-header text-center bg-danger text-white">
-                    <h4>Admin Login</h4>
-                </div>
-                <div class="card-body">
+<body>
 
-                    <form method="POST">
-                        <div class="mb-3">
-                            <label>Username</label>
-                            <input type="text" name="username" class="form-control" required>
-                        </div>
+<div class="container">
 
-                        <div class="mb-3">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control" required>
-                        </div>
+<h2>Admin Login</h2>
 
-                        <div class="d-grid">
-                            <button type="submit" name="login" class="btn btn-danger">
-                                Login
-                            </button>
-                        </div>
-                    </form>
+<form method="POST">
 
-                </div>
-                <div class="card-footer text-center">
-                    <a href="index.php">Back to Home</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<label>Username</label>
+<input type="text" name="username" required>
+
+<label>Password</label>
+<input type="password" name="password" required>
+
+<button type="submit" name="login">Login</button>
+
+</form>
+
+<div class="footer">
+<a href="index.php">Back to Home</a>
+</div>
+
 </div>
 
 </body>

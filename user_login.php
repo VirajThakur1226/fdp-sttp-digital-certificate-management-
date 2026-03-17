@@ -8,11 +8,12 @@ if(isset($_POST['login']))
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn,$sql);
 
     if(mysqli_num_rows($result) == 1)
     {
         $row = mysqli_fetch_assoc($result);
+
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['user_name'] = $row['name'];
 
@@ -28,45 +29,84 @@ if(isset($_POST['login']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>User Login</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+}
+
+.container{
+    width:350px;
+    margin:120px auto;
+    background:white;
+    padding:25px;
+    border-radius:8px;
+    box-shadow:0 0 10px #ccc;
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#28a745;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1e7e34;
+}
+
+.footer{
+    text-align:center;
+    margin-top:10px;
+}
+
+a{
+    text-decoration:none;
+    color:#007bff;
+}
+
+</style>
+
 </head>
-<body class="bg-light">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card shadow">
-                <div class="card-header text-center bg-success text-white">
-                    <h4>User Login</h4>
-                </div>
-                <div class="card-body">
+<body>
 
-                    <form method="POST">
-                        <div class="mb-3">
-                            <label>Email</label>
-                            <input type="email" name="email" class="form-control" required>
-                        </div>
+<div class="container">
 
-                        <div class="mb-3">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control" required>
-                        </div>
+<h2>User Login</h2>
 
-                        <div class="d-grid">
-                            <button type="submit" name="login" class="btn btn-success">
-                                Login
-                            </button>
-                        </div>
-                    </form>
+<form method="POST">
 
-                </div>
-                <div class="card-footer text-center">
-                    Don’t have account? <a href="register.php">Register</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<label>Email</label>
+<input type="email" name="email" required>
+
+<label>Password</label>
+<input type="password" name="password" required>
+
+<button type="submit" name="login">Login</button>
+
+</form>
+
+<div class="footer">
+Don't have account? <a href="register.php">Register</a>
+</div>
+
 </div>
 
 </body>
